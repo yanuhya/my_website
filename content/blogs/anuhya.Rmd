@@ -3,7 +3,7 @@ categories:
 - ""
 - ""
 date: "2017-10-31T22:42:51-05:00"
-description: Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna
+description: Anuhya dddddv Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna
   sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa
   sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem
   consequat tincidunt. Vivamus et sagittis tempus.
@@ -34,11 +34,9 @@ Hey everyone! I am Anuhya. I am from a city called Hyderabad in India, which is 
 Trips during college:
 
 ```{r, echo=FALSE, fig.width=3,fig.height=3}
-knitr::include_graphics(here::here("images", "trip1.jpg"), error = FALSE)
-knitr::include_graphics(here::here("images", "trip2.jpg"), error = FALSE)
-knitr::include_graphics(here::here("images", "trip3.jpg"), error = FALSE)
-knitr::include_graphics(here::here("images", "trip4.jpg"), error = FALSE)
+knitr::include_graphics("/img/trip1.jpg")
 ```
+
 
 ### Work Experience
 Since graduation, I've been working as a software developer at Tesco ( *No, I don't have coupons :P *), where I worked in price transformation, a key project for Tesco. We built a platform that simplified the pricing journey for the vendors, hence enabling them to set competitive prices and also improved the flexibility of pricing by 14 times. Here, I realized that my forte lies in product management - developing a product from ideation to execution excited me. Hence, MAM at LBS perfectly fit into my career aspirations.
@@ -51,7 +49,7 @@ Further, I worked with meet as a product management intern on "powered networkin
 You have seen the `gapminder` dataset that has data on life expectancy, population, and GDP per capita for 142 countries from 1952 to 2007. To get a glimpse of the dataframe, namely to see the variable names, variable types, etc., we use the `glimpse` function. We also want to have a look at the first 20 rows of data.
 
 ```{r}
-glimpse(gapminder)
+glimpse(gapminder)/img/
 
 head(gapminder, 20) # look at the first 20 rows of the dataframe
 
