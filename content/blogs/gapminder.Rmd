@@ -1,0 +1,83 @@
+---
+title: "Gapminder"
+date: '2017-10-31T22:26:13-05:00'
+description: Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna
+  sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa
+  sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem
+  consequat tincidunt. Vivamus et sagittis tempus.
+draft: no
+image: pic08.jpg
+keywords: ''
+slug: gapminder
+categories:
+- ''
+- ''
+---
+
+```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(gapminder)  # gapminder dataset
+library(here)
+library(janitor)
+library(dplyr)
+```
+
+`gapminder` dataset has data on life expectancy, population, and GDP per capita for 142 countries from 1952 to 2007. To get a glimpse of the dataframe, namely to see the variable names, variable types, etc., we use the `glimpse` function. We can also have a look at the first 20 rows of data.
+
+```{r}
+glimpse(gapminder)
+
+head(gapminder, 20) # look at the first 20 rows of the dataframe
+
+```
+
+The `country_data` and `continent_data` will filter the country "India" and continent "Asia".
+
+```{r}
+country_data <- gapminder %>% 
+            filter(country == "India") # just choosing Greece, as this is where I come from
+
+continent_data <- gapminder %>% 
+            filter(continent == "Asia")
+```
+
+First, we create a plot of life expectancy over time for India. We map `year` on the x-axis, and `lifeExp` on the y-axis. We use `geom_point()` to see the actual data points and `geom_smooth(se = FALSE)` to plot the underlying trendlines. 
+
+```{r plot1, lifeExp_one_country}
+ plot1 <- ggplot(data = country_data , mapping = aes(x = year, y = lifeExp))+
+   geom_point() +
+   geom_smooth(se = FALSE)
+```
+
+Next we need to add a title to the same plot using the `labs()` function to add an informative title to the plot.
+
+```{r, lifeExp_one_country_with_label}
+ plot1<- plot1 +
+    labs(title = "Life Expectency of India over time ",
+       x = "YEARS",
+       y = "Life Expectency ") 
+plot1
+
+```
+
+Secondly, we produce a plot for all countries in Asia. We map the `country` variable to the colour aesthetic. We also map `country` to the `group` aesthetic, so all points for each country are grouped together.
+
+```{r lifeExp_one_continent}
+ ggplot(continent_data, aes(x = year , y =lifeExp  , colour= country, group = country))+
+   geom_point() + 
+   geom_smooth(se = FALSE)
+```
+
+Finally, using the original `gapminder` data, we produce a life expectancy over time graph, grouped (or faceted) by continent. We will remove all legends, adding the `theme(legend.position="none")` in the end of our ggplot.
+
+```{r lifeExp_facet_by_continent}
+ ggplot(data = gapminder , mapping = aes(x = year , y =  lifeExp, colour= country ))+
+   geom_point() + 
+   geom_smooth(se = FALSE) +
+   facet_wrap(~continent) +
+   theme(legend.position="none")
+```
+
+#### Observations for life expectency since 1952
+>  The life expectency has been increasing linearly in most of the countires except a few countires in Africa and Asia. The constant improvement of life expectency can be attributed to access to better health care. Another factor could be the  extensive research and development for prevention of diseases. 
+> The drop in the life expectency in Africa could be because of the outbreak of HIV-AIDs around mid 1970s. The same might be the cause of drop in a few countries in Asia. 

@@ -1,0 +1,92 @@
+---
+title: "Gapminder"
+date: '2017-10-31T22:26:13-05:00'
+description: Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna
+  sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa
+  sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem
+  consequat tincidunt. Vivamus et sagittis tempus.
+draft: no
+image: pic08.jpg
+keywords: ''
+slug: gapminder
+categories:
+- ''
+- ''
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p><code>gapminder</code> dataset has data on life expectancy, population, and GDP per capita for 142 countries from 1952 to 2007. To get a glimpse of the dataframe, namely to see the variable names, variable types, etc., we use the <code>glimpse</code> function. We can also have a look at the first 20 rows of data.</p>
+<pre class="r"><code>glimpse(gapminder)</code></pre>
+<pre><code>## Rows: 1,704
+## Columns: 6
+## $ country   &lt;fct&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, ~
+## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, ~
+## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, ~
+## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8~
+## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12~
+## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, ~</code></pre>
+<pre class="r"><code>head(gapminder, 20) # look at the first 20 rows of the dataframe</code></pre>
+<pre><code>## # A tibble: 20 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## 11 Afghanistan Asia       2002    42.1 25268405      727.
+## 12 Afghanistan Asia       2007    43.8 31889923      975.
+## 13 Albania     Europe     1952    55.2  1282697     1601.
+## 14 Albania     Europe     1957    59.3  1476505     1942.
+## 15 Albania     Europe     1962    64.8  1728137     2313.
+## 16 Albania     Europe     1967    66.2  1984060     2760.
+## 17 Albania     Europe     1972    67.7  2263554     3313.
+## 18 Albania     Europe     1977    68.9  2509048     3533.
+## 19 Albania     Europe     1982    70.4  2780097     3631.
+## 20 Albania     Europe     1987    72    3075321     3739.</code></pre>
+<p>The <code>country_data</code> and <code>continent_data</code> will filter the country “India” and continent “Asia”.</p>
+<pre class="r"><code>country_data &lt;- gapminder %&gt;% 
+            filter(country == &quot;India&quot;) # just choosing Greece, as this is where I come from
+
+continent_data &lt;- gapminder %&gt;% 
+            filter(continent == &quot;Asia&quot;)</code></pre>
+<p>First, we create a plot of life expectancy over time for India. We map <code>year</code> on the x-axis, and <code>lifeExp</code> on the y-axis. We use <code>geom_point()</code> to see the actual data points and <code>geom_smooth(se = FALSE)</code> to plot the underlying trendlines.</p>
+<pre class="r"><code> plot1 &lt;- ggplot(data = country_data , mapping = aes(x = year, y = lifeExp))+
+   geom_point() +
+   geom_smooth(se = FALSE)</code></pre>
+<p>Next we need to add a title to the same plot using the <code>labs()</code> function to add an informative title to the plot.</p>
+<pre class="r"><code> plot1&lt;- plot1 +
+    labs(title = &quot;Life Expectency of India over time &quot;,
+       x = &quot;YEARS&quot;,
+       y = &quot;Life Expectency &quot;) 
+plot1</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/blogs/gapminder_files/figure-html/lifeExp_one_country_with_label-1.png" width="672" /></p>
+<p>Secondly, we produce a plot for all countries in Asia. We map the <code>country</code> variable to the colour aesthetic. We also map <code>country</code> to the <code>group</code> aesthetic, so all points for each country are grouped together.</p>
+<pre class="r"><code> ggplot(continent_data, aes(x = year , y =lifeExp  , colour= country, group = country))+
+   geom_point() + 
+   geom_smooth(se = FALSE)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/blogs/gapminder_files/figure-html/lifeExp_one_continent-1.png" width="672" /></p>
+<p>Finally, using the original <code>gapminder</code> data, we produce a life expectancy over time graph, grouped (or faceted) by continent. We will remove all legends, adding the <code>theme(legend.position="none")</code> in the end of our ggplot.</p>
+<pre class="r"><code> ggplot(data = gapminder , mapping = aes(x = year , y =  lifeExp, colour= country ))+
+   geom_point() + 
+   geom_smooth(se = FALSE) +
+   facet_wrap(~continent) +
+   theme(legend.position=&quot;none&quot;)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/blogs/gapminder_files/figure-html/lifeExp_facet_by_continent-1.png" width="672" /></p>
+<div id="observations-for-life-expectency-since-1952" class="section level4">
+<h4>Observations for life expectency since 1952</h4>
+<blockquote>
+<p>The life expectency has been increasing linearly in most of the countires except a few countires in Africa and Asia. The constant improvement of life expectency can be attributed to access to better health care. Another factor could be the extensive research and development for prevention of diseases.
+The drop in the life expectency in Africa could be because of the outbreak of HIV-AIDs around mid 1970s. The same might be the cause of drop in a few countries in Asia.</p>
+</blockquote>
+</div>

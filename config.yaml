@@ -86,8 +86,8 @@ params:
         url: blogs/anuhya
       - image: pic02.jpg
         subtitle: Feugiat Amet Tempus
-        title: Tempus
-        url: blogs/tempus
+        title: gapminder
+        url: blogs/gapminder
       - image: pic03.jpg
         subtitle: Lorem Etiam Nullam
         title: Magna
