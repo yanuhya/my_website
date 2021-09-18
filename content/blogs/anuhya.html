@@ -10,41 +10,30 @@ description: Nullam et orci eu lorem consequat tincidunt vivamus et sagittis mag
 draft: false
 image: pic07.jpg
 keywords: ""
-slug: aliquam
-title: Aliquam
+slug: anuhya
+title: Anuhya
 ---
 
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<div id="task-1-short-biography-written-using-markdown" class="section level1">
-<h1>Task 1: Short biography written using markdown</h1>
-<blockquote>
-<p>Start writing your short biography after this blockquote.</p>
-</blockquote>
-<div id="glimpseme" class="section level3">
-<h3>Glimpse(me)</h3>
+<div id="short-biography" class="section level1">
+<h1>Short biography</h1>
 <p>Hey everyone! I am Anuhya. I am from a city called Hyderabad in India, which is known for the biryanis. I graduated as a electronics and communications engineer in 2019 and worked as a software developer at Tesco post college.</p>
 <div class="figure">
 <img src="https://i.pinimg.com/564x/c2/4c/75/c24c757e0722f3f69be63d28ed55bb37.jpg" width="100" alt="" />
 <p class="caption">Homemade Hyderabadi Chicken Dum Biryani</p>
 </div>
-</div>
 <div id="education" class="section level3">
 <h3>Education</h3>
 <p>I had an amazing 4 years in college where I participated in several hackathons, took up several leadership roles in the college fest and student clubs and also went on a few trips with my friends (<em>on student budget</em>). As part of our final year thesis, we also published a <a href="https://ieeexplore.ieee.org/document/8944675">paper</a> to IEEE.</p>
+<p>Trips during college:</p>
+<p><img src="/img/trip1.png" /><!-- --><img src="/img/trip2.png" /><!-- --><img src="/img/trip3.png" /><!-- --><img src="/img/trip4.png" /><!-- --></p>
 </div>
 <div id="work-experience" class="section level3">
 <h3>Work Experience</h3>
 <p>Since graduation, I’ve been working as a software developer at Tesco ( <em>No, I don’t have coupons :P </em>), where I worked in price transformation, a key project for Tesco. We built a platform that simplified the pricing journey for the vendors, hence enabling them to set competitive prices and also improved the flexibility of pricing by 14 times. Here, I realized that my forte lies in product management - developing a product from ideation to execution excited me. Hence, MAM at LBS perfectly fit into my career aspirations.</p>
-<p>Further, I worked with meet as a product management intern on “powered networking”. Always up for a chat about product, tech and digital transformation of industries.</p>
-<p>In my leisure time:</p>
-<ul>
-<li>I love binge watching tv shows</li>
-<li>Playing games of snooker</li>
-<li>Doodling</li>
-<li>Creating digital art.</li>
-</ul>
+<p>Further, I worked with meet as a product management intern on “powered networking”. I am always up for a chat about product, tech and digital transformation of industries.</p>
 </div>
 </div>
 <div id="task-2-gapminder-country-comparison" class="section level1">
@@ -108,7 +97,7 @@ continent_data &lt;- gapminder %&gt;%
    geom_point() + 
    geom_smooth(se = FALSE)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/blogs/Anuhya_Yallabandi_files/figure-html/lifeExp_one_continent-1.png" width="672" /></p>
+<p><img src="/blogs/anuhya_files/figure-html/lifeExp_one_continent-1.png" width="672" /></p>
 <p>Finally, using the original <code>gapminder</code> data, produce a life expectancy over time graph, grouped (or faceted) by continent. We will remove all legends, adding the <code>theme(legend.position="none")</code> in the end of our ggplot.</p>
 <pre class="r"><code> ggplot(data = gapminder , mapping = aes(x = year , y =  lifeExp, colour= country ))+
    geom_point() + 
@@ -116,7 +105,7 @@ continent_data &lt;- gapminder %&gt;%
    facet_wrap(~continent) +
    theme(legend.position=&quot;none&quot;)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/blogs/Anuhya_Yallabandi_files/figure-html/lifeExp_facet_by_continent-1.png" width="672" /></p>
+<p><img src="/blogs/anuhya_files/figure-html/lifeExp_facet_by_continent-1.png" width="672" /></p>
 <p>Given these trends, what can you say about life expectancy since 1952? Again, don’t just say what’s happening in the graph. Tell some sort of story and speculate about the differences in the patterns.</p>
 <blockquote>
 <p>Type your answer after this blockquote.</p>
@@ -155,16 +144,16 @@ glimpse(brexit_results)</code></pre>
 <pre class="r"><code># histogram
 ggplot(brexit_results, aes(x = leave_share)) +
   geom_histogram(binwidth = 2.5)</code></pre>
-<p><img src="/blogs/Anuhya_Yallabandi_files/figure-html/brexit_histogram-1.png" width="672" /></p>
+<p><img src="/blogs/anuhya_files/figure-html/brexit_histogram-1.png" width="672" /></p>
 <pre class="r"><code># density plot-- think smoothed histogram
 ggplot(brexit_results, aes(x = leave_share)) +
   geom_density()</code></pre>
-<p><img src="/blogs/Anuhya_Yallabandi_files/figure-html/brexit_histogram-2.png" width="672" /></p>
+<p><img src="/blogs/anuhya_files/figure-html/brexit_histogram-2.png" width="672" /></p>
 <pre class="r"><code># The empirical cumulative distribution function (ECDF) 
 ggplot(brexit_results, aes(x = leave_share)) +
   stat_ecdf(geom = &quot;step&quot;, pad = FALSE) +
   scale_y_continuous(labels = scales::percent)</code></pre>
-<p><img src="/blogs/Anuhya_Yallabandi_files/figure-html/brexit_histogram-3.png" width="672" /></p>
+<p><img src="/blogs/anuhya_files/figure-html/brexit_histogram-3.png" width="672" /></p>
 <p>One common explanation for the Brexit outcome was fear of immigration and opposition to the EU’s more open border policy. We can check the relationship (or correlation) between the proportion of native born residents (<code>born_in_uk</code>) in a constituency and its <code>leave_share</code>. To do this, let us get the correlation between the two variables</p>
 <pre class="r"><code>brexit_results %&gt;% 
   select(leave_share, born_in_uk) %&gt;% 
@@ -398,14 +387,14 @@ base_plot &lt;- animal_rescue %&gt;%
   theme_bw()
 
 base_plot + geom_histogram()</code></pre>
-<p><img src="/blogs/Anuhya_Yallabandi_files/figure-html/plots_on_incident_cost_by_animal_group-1.png" width="672" /></p>
+<p><img src="/blogs/anuhya_files/figure-html/plots_on_incident_cost_by_animal_group-1.png" width="672" /></p>
 <pre class="r"><code>base_plot + geom_density()</code></pre>
-<p><img src="/blogs/Anuhya_Yallabandi_files/figure-html/plots_on_incident_cost_by_animal_group-2.png" width="672" /></p>
+<p><img src="/blogs/anuhya_files/figure-html/plots_on_incident_cost_by_animal_group-2.png" width="672" /></p>
 <pre class="r"><code>base_plot + geom_boxplot()</code></pre>
-<p><img src="/blogs/Anuhya_Yallabandi_files/figure-html/plots_on_incident_cost_by_animal_group-3.png" width="672" /></p>
+<p><img src="/blogs/anuhya_files/figure-html/plots_on_incident_cost_by_animal_group-3.png" width="672" /></p>
 <pre class="r"><code>base_plot + stat_ecdf(geom = &quot;step&quot;, pad = FALSE) +
   scale_y_continuous(labels = scales::percent)</code></pre>
-<p><img src="/blogs/Anuhya_Yallabandi_files/figure-html/plots_on_incident_cost_by_animal_group-4.png" width="672" /></p>
+<p><img src="/blogs/anuhya_files/figure-html/plots_on_incident_cost_by_animal_group-4.png" width="672" /></p>
 <p>Which of these four graphs do you think best communicates the variability of the <code>incident_notional_cost</code> values? Also, can you please tell some sort of story (which animals are more expensive to rescue than others, the spread of values) and speculate about the differences in the patterns.</p>
 <blockquote>
 <p>I think that the denisty plots best communicates the <em>incident notional cost</em> because we get to see clearly the maximum cost and the count at that cost. Though, the horses have the highest <em>mean_incident_cost</em> : <em>739.5</em>, the count of the number of horses saved is <em>195</em>. The highest total mean incident cost which is computed by the product of mean incident cost to the number of animals saved is for the cats. Also cats, Birds and Dogs were highest in terms of the number of animals to be rescued. This might be due to the fact that these are the most common domestic animals.</p>

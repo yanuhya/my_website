@@ -10,8 +10,8 @@ description: Nullam et orci eu lorem consequat tincidunt vivamus et sagittis mag
 draft: false
 image: pic07.jpg
 keywords: ""
-slug: aliquam
-title: Aliquam
+slug: anuhya
+title: Anuhya
 ---
 
 ```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
@@ -22,11 +22,7 @@ library(janitor)
 ```
 
 
-# Task 1: Short biography written using markdown
-
-> Start writing your short biography after this blockquote.
-
-### Glimpse(me) 
+# Short biography
 
 Hey everyone! I am Anuhya. I am from a city called Hyderabad in India, which is known for the biryanis. I graduated as a electronics and communications engineer in 2019 and worked as a software developer at Tesco post college.
 
@@ -34,18 +30,20 @@ Hey everyone! I am Anuhya. I am from a city called Hyderabad in India, which is 
 
 ### Education
  I had an amazing 4 years in college where I participated in several hackathons, took up several leadership roles in the college fest and student clubs and also went on a few trips with my friends (*on student budget*). As part of our final year thesis, we also published a [paper](https://ieeexplore.ieee.org/document/8944675) to IEEE.
+ 
+Trips during college:
+
+```{r, echo=FALSE, fig.width=3,fig.height=3}
+knitr::include_graphics("/img/trip1.png",error=FALSE)
+knitr::include_graphics("/img/trip2.png",error=FALSE)
+knitr::include_graphics("/img/trip3.png",error=FALSE)
+knitr::include_graphics("/img/trip4.png",error=FALSE)
+```
 
 ### Work Experience
 Since graduation, I've been working as a software developer at Tesco ( *No, I don't have coupons :P *), where I worked in price transformation, a key project for Tesco. We built a platform that simplified the pricing journey for the vendors, hence enabling them to set competitive prices and also improved the flexibility of pricing by 14 times. Here, I realized that my forte lies in product management - developing a product from ideation to execution excited me. Hence, MAM at LBS perfectly fit into my career aspirations.
 
-Further, I worked with meet as a product management intern on "powered networking". Always up for a chat about product, tech and digital transformation of industries.
-
-In my leisure time:
-
-* I love binge watching tv shows
-* Playing games of snooker 
-* Doodling 
-* Creating digital art.
+Further, I worked with meet as a product management intern on "powered networking". I am always up for a chat about product, tech and digital transformation of industries.
 
 
 # Task 2: `gapminder` country comparison

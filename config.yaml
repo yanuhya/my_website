@@ -83,7 +83,7 @@ params:
       - image: IMG_Anuhya.jpg
         subtitle: A trip down the memory lane
         title: About me
-        url: blogs/aliquam
+        url: blogs/anuhya
       - image: pic02.jpg
         subtitle: Feugiat Amet Tempus
         title: Tempus
