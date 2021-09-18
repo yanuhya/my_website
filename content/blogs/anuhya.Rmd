@@ -34,10 +34,10 @@ Hey everyone! I am Anuhya. I am from a city called Hyderabad in India, which is 
 Trips during college:
 
 ```{r, echo=FALSE, fig.width=3,fig.height=3}
-knitr::include_graphics("/img/trip1.png",error=FALSE)
-knitr::include_graphics("/img/trip2.png",error=FALSE)
-knitr::include_graphics("/img/trip3.png",error=FALSE)
-knitr::include_graphics("/img/trip4.png",error=FALSE)
+knitr::include_graphics(here::here("images", "trip1.jpg"), error = FALSE)
+knitr::include_graphics(here::here("images", "trip2.jpg"), error = FALSE)
+knitr::include_graphics(here::here("images", "trip3.jpg"), error = FALSE)
+knitr::include_graphics(here::here("images", "trip4.jpg"), error = FALSE)
 ```
 
 ### Work Experience
