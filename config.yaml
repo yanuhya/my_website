@@ -21,7 +21,7 @@ params:
     buttonClear: Clear
     buttonSend: Send message
     email:
-      - email: example@domain.com
+      - email: yanuhya@gmail.com
         title: Email
     enable: yes
     phone:
@@ -56,7 +56,7 @@ params:
         url: https://www.github.com
       - icon: fa-linkedin
         label: LinkedIn
-        url: https://www.linkedin.com
+        url: https://www.linkedin.com/in/yanuhya/
   image: ''
   name: Your name
   navigation:
@@ -82,8 +82,8 @@ params:
     enable: yes
     showcase:
       - image: pic01.jpg
-        subtitle: Ipsum Dolor Sit Amet
-        title: Aliquam
+        subtitle: A trip down the memory lane
+        title: About me
         url: blogs/aliquam
       - image: pic02.jpg
         subtitle: Feugiat Amet Tempus
