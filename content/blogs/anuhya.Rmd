@@ -30,12 +30,6 @@ Hey everyone! I am Anuhya. I am from a city called Hyderabad in India, which is 
 
 ### Education
  I had an amazing 4 years in college where I participated in several hackathons, took up several leadership roles in the college fest and student clubs and also went on a few trips with my friends (*on student budget*). As part of our final year thesis, we also published a [paper](https://ieeexplore.ieee.org/document/8944675) to IEEE.
- 
-Trips during college:
-
-```{r, echo=FALSE, fig.width=3,fig.height=3}
-knitr::include_graphics("/img/trip1.jpg", error = FALSE)
-```
 
 
 ### Work Experience
