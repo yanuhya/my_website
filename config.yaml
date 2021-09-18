@@ -84,8 +84,8 @@ params:
         subtitle: A trip down the memory lane
         title: About me
         url: blogs/anuhya
-      - image: pic02.jpg
-        subtitle: Feugiat Amet Tempus
+      - image: pic02.png
+        subtitle: Life expectency over years
         title: gapminder
         url: blogs/gapminder
       - image: pic03.jpg

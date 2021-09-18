@@ -198,7 +198,7 @@ Sub-Saharan Africa and Europe & Central Asia have the most missing observations 
 
 1. How has mortality rate for under 5 changed by region? In each region, we find the top 5 countries that have seen the greatest improvement, as well as those 5 countries where mortality rates have had the least improvement or even deterioration.
 
-```{r}
+```{r warning=FALSE}
 
 mortality_diff <- life_hiv_bank_data_region %>%
   filter(year == 1800 | year == 2021 ) %>%
@@ -213,7 +213,7 @@ mortality_diff <- life_hiv_bank_data_region %>%
 
 ```
 
-```{r}
+```{r warning=FALSE}
 mortality_top5 <- mortality_diff %>%
   group_by(region) %>%
   slice_max(order_by = change_mortality, n=5)
@@ -231,7 +231,7 @@ We can see that each region has seen various changes in mortality rate over the 
 
 1. Is there a relationship between primary school enrollment and fertility rate?
 
-```{r}
+```{r warning=FALSE}
 ggplot(life_hiv_bank_data_region, aes(x=primarySchoolEnrolment, y=fertilityRate)) +
   geom_point() +
   scale_x_log10() +
@@ -239,7 +239,7 @@ ggplot(life_hiv_bank_data_region, aes(x=primarySchoolEnrolment, y=fertilityRate)
   geom_smooth(method = "lm", formula = y~x)
 ```
 
-```{r}
+```{r warning=FALSE}
  life_hiv_bank_data_region %>%
   select(fertilityRate, primarySchoolEnrolment) %>%
   na.omit() %>%
