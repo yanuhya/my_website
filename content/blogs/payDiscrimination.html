@@ -1,0 +1,276 @@
+---
+title: "Anuhya"
+date: '2017-10-31T22:42:51-05:00'
+description: Anuhya dddddv Nullam et orci eu lorem consequat tincidunt vivamus et
+  sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna.
+  Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et
+  orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.
+draft: no
+image: pic07.jpg
+keywords: ''
+slug: payDiscrimination
+categories:
+- ''
+- ''
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
+<pre><code>## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.3     v dplyr   1.0.7
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   2.0.0     v forcats 0.5.1</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre><code>## Warning: package &#39;mosaic&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+<pre><code>## 
+## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;mosaic&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
+## 
+##     mean</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     count, do, tally</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     cross</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     stat</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     max, mean, min, prod, range, sample, sum</code></pre>
+<pre><code>## Warning: package &#39;ggthemes&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggthemes&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     theme_map</code></pre>
+<pre><code>## Warning: package &#39;GGally&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;GGally&#39;:
+##   method from   
+##   +.gg   ggplot2</code></pre>
+<pre><code>## Warning: package &#39;readxl&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## here() starts at A:/LBS/Term-1/AppliedStatistics/my_website</code></pre>
+<pre><code>## Warning: package &#39;skimr&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## 
+## Attaching package: &#39;skimr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     n_missing</code></pre>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<pre><code>## Warning: package &#39;tidyquant&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## Loading required package: lubridate</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<pre><code>## Loading required package: PerformanceAnalytics</code></pre>
+<pre><code>## Warning: package &#39;PerformanceAnalytics&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## Loading required package: xts</code></pre>
+<pre><code>## Warning: package &#39;xts&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## Loading required package: zoo</code></pre>
+<pre><code>## Warning: package &#39;zoo&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## 
+## Attaching package: &#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<pre><code>## 
+## Attaching package: &#39;xts&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     first, last</code></pre>
+<pre><code>## 
+## Attaching package: &#39;PerformanceAnalytics&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     legend</code></pre>
+<pre><code>## Loading required package: quantmod</code></pre>
+<pre><code>## Warning: package &#39;quantmod&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## Loading required package: TTR</code></pre>
+<pre><code>## Warning: package &#39;TTR&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<pre><code>## == Need to Learn tidyquant? ====================================================
+## Business Science offers a 1-hour course - Learning Lab #9: Performance Analysis &amp; Portfolio Optimization with tidyquant!
+## &lt;/&gt; Learn more at: https://university.business-science.io/p/learning-labs-pro &lt;/&gt;</code></pre>
+<pre><code>## Warning: package &#39;infer&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## 
+## Attaching package: &#39;infer&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:mosaic&#39;:
+## 
+##     prop_test, t_test</code></pre>
+<pre><code>## Warning: package &#39;openintro&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## Loading required package: airports</code></pre>
+<pre><code>## Warning: package &#39;airports&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## Loading required package: cherryblossom</code></pre>
+<pre><code>## Warning: package &#39;cherryblossom&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## Loading required package: usdata</code></pre>
+<pre><code>## Warning: package &#39;usdata&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## 
+## Attaching package: &#39;openintro&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     dotPlot</code></pre>
+<pre><code>## The following objects are masked from &#39;package:lattice&#39;:
+## 
+##     ethanol, lsegments</code></pre>
+<p>At the last board meeting of Omega Group Plc., the headquarters of a large multinational company, the issue was raised that women were being discriminated in the company, in the sense that the salaries were not the same for male and female executives. A quick analysis of a sample of 50 employees (of which 24 men and 26 women) revealed that the average salary for men was about 8,700 higher than for women. This seemed like a considerable difference, so it was decided that a further analysis of the company salaries was warranted.</p>
+<p>We are asked to carry out the analysis. The objective is to find out whether there is indeed a significant difference between the salaries of men and women, and whether the difference is due to discrimination or whether it is based on another, possibly valid, determining factor.</p>
+<div id="loading-the-data" class="section level2">
+<h2>Loading the data</h2>
+<pre class="r"><code>omega &lt;- read_csv(here::here(&quot;data&quot;, &quot;omega.csv&quot;))</code></pre>
+<pre><code>## Rows: 50 Columns: 3</code></pre>
+<pre><code>## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## chr (1): gender
+## dbl (2): salary, experience</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>glimpse(omega) # examine the data frame</code></pre>
+<pre><code>## Rows: 50
+## Columns: 3
+## $ salary     &lt;dbl&gt; 81894.42, 69517.43, 68589.16, 74880.80, 65598.05, 76840.49,~
+## $ gender     &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;ma~
+## $ experience &lt;dbl&gt; 16, 25, 15, 33, 16, 19, 32, 34, 1, 44, 7, 14, 33, 19, 24, 3~</code></pre>
+</div>
+<div id="relationship-salary---gender" class="section level2">
+<h2>Relationship Salary - Gender ?</h2>
+<p>The data frame <code>omega</code> contains the salaries for the sample of 50 executives in the company. Can we conclude that there is a significant difference between the salaries of the male and female executives?</p>
+<p>Note that we can perform different types of analyses, and check whether they all lead to the same conclusion</p>
+<p>. Confidence intervals
+. Hypothesis testing
+. Correlation analysis
+. Regression</p>
+<p>We calculate summary statistics on salary by gender. Also, create and print a dataframe where, for each gender, we show the mean, SD, sample size, the t-critical, the SE, the margin of error, and the low/high endpoints of a 95% condifence interval</p>
+<pre class="r"><code># Summary Statistics of salary by gender
+mosaic::favstats (salary ~ gender, data=omega)</code></pre>
+<pre><code>##   gender      min       Q1   median       Q3      max     mean       sd  n
+## 1 female 47032.57 60337.83 64618.21 70033.15 78800.18 64542.84 7567.265 26
+## 2   male 54768.19 68331.31 74674.51 78568.11 84576.11 73239.13 7462.599 24
+##   missing
+## 1       0
+## 2       0</code></pre>
+<pre class="r"><code># Dataframe with two rows (male-female) and having as columns gender, mean, SD, sample size, 
+# the t-critical value, the standard error, the margin of error, 
+# and the low/high endpoints of a 95% condifence interval
+
+gender_salary &lt;- omega %&gt;%
+  group_by(gender) %&gt;%
+  select(salary) %&gt;%
+  summarise(mean_sal = mean(salary),
+            stdev_sal = STDEV(salary),
+            sample_size_sal = n(),
+            stder_sal = stdev_sal/ sqrt(n())) %&gt;%
+  mutate(t_critical = qt(0.975, sum(sample_size_sal)-1),
+         SE_sal = stder_sal/sqrt(sample_size_sal),
+         margin_of_error = t_critical*SE_sal,
+         lower_bound_CI_sal = mean_sal - (1.96*stder_sal),
+         upper_bound_CI_sal = mean_sal + (1.96*stder_sal))</code></pre>
+<pre><code>## Adding missing grouping variables: `gender`</code></pre>
+<p>From the analysis above, we can conclude that the difference between the relationships of salary and gender is at least 95% statistically significant. The confidence intervals of salaries of men and women do not overlap and there is an observed difference of about £10 000, leading us to an initial observation that there is gender discrimination happening. However, let us conduct further analysis to confirm this.</p>
+<p>We can also run a hypothesis testing, assuming as a null hypothesis that the mean difference in salaries is zero, or that, on average, men and women make the same amount of money. We tun your hypothesis testing using <code>t.test()</code> and with the simulation method from the <code>infer</code> package.</p>
+<pre class="r"><code># hypothesis testing using t.test() 
+t.test(salary ~ gender, data = omega)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  salary by gender
+## t = -4.0891, df = 47.78, p-value = 0.0001651
+## alternative hypothesis: true difference in means between group female and group male is not equal to 0
+## 95 percent confidence interval:
+##  -12972.825  -4419.755
+## sample estimates:
+## mean in group female   mean in group male 
+##             64542.84             73239.13</code></pre>
+<pre class="r"><code># hypothesis testing using infer package
+infer_gender_salary &lt;- omega %&gt;%
+  specify(salary ~ gender) %&gt;%
+  calculate(stat = &quot;diff in means&quot;, order = c(&quot;male&quot;, &quot;female&quot;))
+
+null_dist &lt;- omega %&gt;%
+  # specify variables
+  specify(salary ~ gender) %&gt;%
+  
+  # assume independence, i.e, there is no difference
+  hypothesize(null = &quot;independence&quot;) %&gt;%
+  
+  # generate 1000 reps, of type &quot;permute&quot;
+  generate(reps = 1000, type = &quot;permute&quot;) %&gt;%
+  
+  # calculate statistic of difference, namely &quot;diff in means&quot;
+  calculate(stat = &quot;diff in means&quot;, order = c(&quot;male&quot;, &quot;female&quot;))</code></pre>
+<p>The t-stat for our hypothesis test is -4, which is more than our boundary of 2/-2. This leads us to reject the null hypothesis. Additionally, our p-value is less than 5%, which means that we are not likely to get a sampling error in our data. So we can assume that our alternative hypothesis is right, ie. that there is a difference between the salaries of males and females.</p>
+</div>
+<div id="relationship-experience---gender" class="section level2">
+<h2>Relationship Experience - Gender?</h2>
+<p>At the board meeting, someone raised the issue that there was indeed a substantial difference between male and female salaries, but that this was attributable to other reasons such as differences in experience. A questionnaire send out to the 50 executives in the sample reveals that the average experience of the men is approximately 21 years, whereas the women only have about 7 years experience on average (see table below).</p>
+<pre class="r"><code># Summary Statistics of experience by gender
+favstats (experience ~ gender, data=omega)</code></pre>
+<pre><code>##   gender min    Q1 median    Q3 max      mean       sd  n missing
+## 1 female   0  0.25    3.0 14.00  29  7.384615  8.51388 26       0
+## 2   male   1 15.75   19.5 31.25  44 21.125000 10.91593 24       0</code></pre>
+<pre class="r"><code>gender_experience &lt;- omega %&gt;%
+  group_by(gender) %&gt;%
+  select(experience) %&gt;%
+  summarise(mean_exp = mean(experience),
+            stdev_exp = STDEV(experience),
+            sample_size_exp = n(),
+            stder_exp = stdev_exp/ sqrt(n())) %&gt;%
+  mutate(t_critical = qt(0.975, sum(sample_size_exp)-1),
+         SE_exp = stder_exp/sqrt(sample_size_exp),
+         margin_of_error = t_critical*SE_exp,
+         lower_bound_CI_exp = mean_exp - (1.96*stder_exp),
+         upper_bound_CI_exp = mean_exp + (1.96*stder_exp))</code></pre>
+<pre><code>## Adding missing grouping variables: `gender`</code></pre>
+<p>Based on this evidence, can we conclude that there is a significant difference between the experience of the male and female executives? Let’s perform similar analyses as in the previous section. Does our conclusion validate or endanger our conclusion about the difference in male and female salaries?</p>
+<p>From the analysis above, we can conclude that the difference between experience levels of males and females is at least 95% statistically signifcant. This endangers our initial conclusion that the difference in salaries between genders is solely due to discrimination. However, more analysis needs to be conducted before we can form a final conclusion.</p>
+</div>
+<div id="relationship-salary---experience" class="section level2">
+<h2>Relationship Salary - Experience ?</h2>
+<p>Someone at the meeting argues that clearly, a more thorough analysis of the relationship between salary and experience is required before any conclusion can be drawn about whether there is any gender-based salary discrimination in the company.</p>
+<p>We analyse the relationship between salary and experience and draw a scatterplot to visually inspect the data.</p>
+<pre class="r"><code>ggplot(omega, aes(x=salary, y = experience))+
+  geom_point()+
+  geom_smooth(color=&quot;red&quot;) +
+  theme_bw() +
+  labs (
+    title = &quot;Salary by Experience&quot;
+  )</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/blogs/payDiscrimination_files/figure-html/salary_exp_scatter-1.png" width="672" /></p>
+<p>From the scatterplot above, we can see a clear correlation between salary and experience. This would confirm the argument that salary is related to experience, and reject the argument that salary is related to gender. At this point of the analysis, we could say that there is just insufficient information to tell whether there is any gender-based salary discrimination, as it seems to be more related to experience.</p>
+</div>
+<div id="check-correlations-between-the-data" class="section level2">
+<h2>Check correlations between the data</h2>
+<p>We use <code>GGally:ggpairs()</code> to create a scatterplot and correlation matrix. Essentially, we change the order our variables will appear in and have the dependent variable (Y), salary, as last in our list. We then pipe the dataframe to <code>ggpairs()</code> with <code>aes</code> arguments to colour by <code>gender</code> and make ths plots somewhat transparent (<code>alpha  = 0.3</code>).</p>
+<pre class="r"><code>omega %&gt;% 
+  select(gender, experience, salary) %&gt;% #order variables they will appear in ggpairs()
+  ggpairs(aes(colour=gender, alpha = 0.3))+
+  theme_bw()</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="/blogs/payDiscrimination_files/figure-html/ggpairs-1.png" width="672" /></p>
+<p>This salary-experience plot, organized by gender, tells us a lot. From the bottom-left of the plot, which concern employees with minimum experience, we can infer that women actually have higher salaries than men. However, as we move towards the upper-middle part of the plot, we can see that women with 15-30 years of experience are paid less than their male peers. Additionally, employees witht the most experience in the company (30-45 years), are solely male, and thus there is no way to tell whether there is any gender-based salary discrimination going on. However, it may be possible that for these senior roles, only males have been considered, as there is no woman with this much experience in this company. This would introduce another gender-based discrimination into the mix.</p>
+</div>
