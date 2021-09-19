@@ -5,7 +5,6 @@ categories:
 date: "2017-10-31T21:28:43-05:00"
 description: ""
 draft: false
-image: pic10.jpg
 keywords: ""
 slug: gdp
 title: GDP
@@ -24,7 +23,6 @@ library(broom)
 library(tidyquant)
 library(infer)
 library(openintro)
-```
 ```
 
 At the risk of oversimplifying things, the main components of gross domestic product, GDP are personal consumption (C), business investment (I), government spending (G) and net exports (exports - imports). Read more about GDP and the different approaches in calculating at the [Wikipedia GDP page](https://en.wikipedia.org/wiki/Gross_domestic_product).

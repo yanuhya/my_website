@@ -5,7 +5,6 @@ categories:
 date: "2017-10-31T21:28:43-05:00"
 description: ""
 draft: false
-image: pic10.jpg
 keywords: ""
 slug: gdp
 title: GDP
@@ -14,15 +13,9 @@ title: GDP
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<pre><code>
-At the risk of oversimplifying things, the main components of gross domestic product, GDP are personal consumption (C), business investment (I), government spending (G) and net exports (exports - imports). Read more about GDP and the different approaches in calculating at the [Wikipedia GDP page](https://en.wikipedia.org/wiki/Gross_domestic_product).
-
-The GDP data we will look at is from the [United Nations&#39; National Accounts Main Aggregates Database](https://unstats.un.org/unsd/snaama/Downloads), which contains estimates of total GDP and its components for all countries from 1970 to today. We will look at how GDP and its components have changed over time, and compare different countries and how much each component contributes to that country&#39;s GDP. 
-
-
-
-```r
-UN_GDP_data  &lt;-  read_excel(here::here(&quot;data&quot;, &quot;Download-GDPconstant-USD-countries.xls&quot;), # Excel filename
+<p>At the risk of oversimplifying things, the main components of gross domestic product, GDP are personal consumption (C), business investment (I), government spending (G) and net exports (exports - imports). Read more about GDP and the different approaches in calculating at the <a href="https://en.wikipedia.org/wiki/Gross_domestic_product">Wikipedia GDP page</a>.</p>
+<p>The GDP data we will look at is from the <a href="https://unstats.un.org/unsd/snaama/Downloads">United Nations’ National Accounts Main Aggregates Database</a>, which contains estimates of total GDP and its components for all countries from 1970 to today. We will look at how GDP and its components have changed over time, and compare different countries and how much each component contributes to that country’s GDP.</p>
+<pre class="r"><code>UN_GDP_data  &lt;-  read_excel(here::here(&quot;data&quot;, &quot;Download-GDPconstant-USD-countries.xls&quot;), # Excel filename
                 sheet=&quot;Download-GDPconstant-USD-countr&quot;, # Sheet name
                 skip=2) # Number of rows to skip</code></pre>
 <p>The first thing we do is to tidy the data, as it is in wide format and we must make it into long, tidy format. All figures are expressed in billions (divide values by <code>1e9</code>, or <span class="math inline">\(10^9\)</span>), and we rename the indicators into something shorter.</p>
