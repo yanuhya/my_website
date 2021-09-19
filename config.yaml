@@ -97,11 +97,11 @@ params:
         title: GDP
         url: blogs/gdp
       - image: pic05.jpg
-        subtitle: Ipsum Dolor Sit Amet
+        subtitle: Youth Risk Behavior Surveillance System
         title: YRBSS
         url: blogs/yrbss
       - image: pic06.jpg
-        subtitle: Feugiat Amet Tempus
+        subtitle: Analysing bike rentals
         title: TFL Bike rentals
         url: blogs/tfl
   #two:
