@@ -1,12 +1,11 @@
 ---
-title: "Anuhya"
+title: "Omge Group Pay Scale discrimination"
 date: '2017-10-31T22:42:51-05:00'
 description: Anuhya dddddv Nullam et orci eu lorem consequat tincidunt vivamus et
   sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna.
   Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et
   orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.
 draft: no
-image: pic07.jpg
 keywords: ''
 slug: payDiscrimination
 categories:
@@ -14,7 +13,7 @@ categories:
 - ''
 ---
 
-```{r load-libraries, echo=FALSE}
+```{r load-libraries, echo=FALSE, message=FALSE}
 library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
 library(mosaic)
 library(ggthemes)
@@ -36,7 +35,7 @@ We are asked to carry out the analysis. The objective is to find out whether the
 ## Loading the data
 
 
-```{r load_omega_data}
+```{r load_omega_data, warning=FALSE}
 omega <- read_csv(here::here("data", "omega.csv"))
 glimpse(omega) # examine the data frame
 ```
@@ -54,7 +53,7 @@ Note that we can perform different types of analyses, and check whether they all
 
 We calculate summary statistics on salary by gender. Also, create and print a dataframe where, for each gender, we show the mean, SD, sample size, the t-critical, the SE, the margin of error, and the low/high endpoints of a 95% condifence interval
 
-```{r, confint_single_valiables}
+```{r, confint_single_valiables, warning=FALSE}
 # Summary Statistics of salary by gender
 mosaic::favstats (salary ~ gender, data=omega)
 
@@ -83,7 +82,7 @@ From the analysis above, we can conclude that the difference between the relatio
 
 We can also run a hypothesis testing, assuming as a null hypothesis that the mean difference in salaries is zero, or that, on average, men and women make the same amount of money. We tun your hypothesis testing using `t.test()` and with the simulation method from the `infer` package.
 
-```{r, hypothesis_testing}
+```{r, hypothesis_testing, warning=FALSE}
 # hypothesis testing using t.test() 
 t.test(salary ~ gender, data = omega)
 
@@ -114,7 +113,7 @@ The t-stat for our hypothesis test is -4, which is more than our boundary of 2/-
 
 At the board meeting, someone raised the issue that there was indeed a substantial difference between male and female salaries, but that this was attributable to other reasons such as differences in experience. A questionnaire send out to the 50 executives in the sample reveals that the average experience of the men is approximately 21 years, whereas the women only have about 7 years experience on average (see table below).
 
-```{r, experience_stats}
+```{r, experience_stats, warning=FALSE}
 # Summary Statistics of experience by gender
 favstats (experience ~ gender, data=omega)
 
