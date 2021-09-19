@@ -20,7 +20,7 @@ params:
     buttonClear: Clear
     buttonSend: Send message
     email:
-      - email: yanuhya@gmail.com
+      - email: ayallabandi.mam2022@london.edu
         title: Email
     enable: yes
     phone:
