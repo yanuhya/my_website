@@ -24,7 +24,7 @@ params:
         title: Email
     enable: yes
     phone:
-      - phone: (000) 000-0000 x1234
+      - phone: +44 (0)20 7000 7000
         title: Phone
   custom_css: []
   custom_js: []
