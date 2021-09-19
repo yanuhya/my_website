@@ -18,12 +18,6 @@ title: TFL
 
 # Download TFL data to temporary file
 httr::GET(url, write_disk(bike.temp &lt;- tempfile(fileext = &quot;.xlsx&quot;)))</code></pre>
-<pre><code>## Response [https://airdrive-secure.s3-eu-west-1.amazonaws.com/london/dataset/number-bicycle-hires/2021-08-23T14%3A32%3A29/tfl-daily-cycle-hires.xlsx?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAJJDIMAIVZJDICKHA%2F20210919%2Feu-west-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20210919T005736Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=b434b914fdab09fc5abbc7a6c06982fe35dd8c34ecd9e8a5ab5284da959ef358&amp;X-Amz-SignedHeaders=host]
-##   Date: 2021-09-19 00:57
-##   Status: 200
-##   Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-##   Size: 173 kB
-## &lt;ON DISK&gt;  C:\Users\Anuhya\AppData\Local\Temp\Rtmpe0UDwx\file496c37497711.xlsx</code></pre>
 <pre class="r"><code># Use read_excel to read it as dataframe
 bike0 &lt;- read_excel(bike.temp,
                    sheet = &quot;Data&quot;,

@@ -28,7 +28,7 @@ library(infer)
 
 The TfL data shows how many bikes were hired every single day. We can get the latest data by running the following
 
-```{r, get_tfl_data, cache=TRUE, message=FALSE, warning=FALSE}
+```{r, get_tfl_data, cache=TRUE, message=FALSE, warning=FALSE, results = 'hide'}
 url <- "https://data.london.gov.uk/download/number-bicycle-hires/ac29363e-e0cb-47cc-a97a-e216d900a6b0/tfl-daily-cycle-hires.xlsx"
 
 # Download TFL data to temporary file
