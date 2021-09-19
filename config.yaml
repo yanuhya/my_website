@@ -81,7 +81,7 @@ params:
     enable: yes
     showcase:
       - image: IMG_Anuhya.jpg
-        subtitle: A trip down the memory lane
+        subtitle: glimpse(me)
         title: About me
         url: blogs/anuhya
       - image: pic02.jpg
@@ -93,9 +93,9 @@ params:
         title: Omega Group Pay Discrimination
         url: blogs/payDiscrimination
       - image: pic04.jpg
-        subtitle: Nisl Sed Aliquam
-        title: Ipsum
-        url: blogs/ipsum
+        subtitle: How GDP has changed over time
+        title: GDP
+        url: blogs/gdp
       - image: pic05.jpg
         subtitle: Ipsum Dolor Sit Amet
         title: Consequat
