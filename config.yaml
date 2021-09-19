@@ -102,8 +102,8 @@ params:
         url: blogs/yrbss
       - image: pic06.jpg
         subtitle: Feugiat Amet Tempus
-        title: Etiam
-        url: blogs/ipsum
+        title: TFL Bike rentals
+        url: blogs/tfl
   #two:
   #  buttonText: Get Started
   #  enable: yes
