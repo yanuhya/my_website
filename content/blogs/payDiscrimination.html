@@ -16,124 +16,22 @@ categories:
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
-<pre><code>## v ggplot2 3.3.5     v purrr   0.3.4
-## v tibble  3.1.3     v dplyr   1.0.7
-## v tidyr   1.1.3     v stringr 1.4.0
-## v readr   2.0.0     v forcats 0.5.1</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre><code>## Warning: package &#39;mosaic&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
-<pre><code>## 
-## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
-## additional features.  The original behavior of these functions should not be affected by this.</code></pre>
-<pre><code>## 
-## Attaching package: &#39;mosaic&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
-## 
-##     mean</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     count, do, tally</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     cross</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     stat</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-##     quantile, sd, t.test, var</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     max, mean, min, prod, range, sample, sum</code></pre>
 <pre><code>## Warning: package &#39;ggthemes&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ggthemes&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     theme_map</code></pre>
 <pre><code>## Warning: package &#39;GGally&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;GGally&#39;:
-##   method from   
-##   +.gg   ggplot2</code></pre>
 <pre><code>## Warning: package &#39;readxl&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## here() starts at A:/LBS/Term-1/AppliedStatistics/my_website</code></pre>
 <pre><code>## Warning: package &#39;skimr&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## 
-## Attaching package: &#39;skimr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     n_missing</code></pre>
-<pre><code>## 
-## Attaching package: &#39;janitor&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     chisq.test, fisher.test</code></pre>
 <pre><code>## Warning: package &#39;tidyquant&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## Loading required package: lubridate</code></pre>
-<pre><code>## 
-## Attaching package: &#39;lubridate&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     date, intersect, setdiff, union</code></pre>
-<pre><code>## Loading required package: PerformanceAnalytics</code></pre>
 <pre><code>## Warning: package &#39;PerformanceAnalytics&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## Loading required package: xts</code></pre>
 <pre><code>## Warning: package &#39;xts&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## Loading required package: zoo</code></pre>
 <pre><code>## Warning: package &#39;zoo&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## 
-## Attaching package: &#39;zoo&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     as.Date, as.Date.numeric</code></pre>
-<pre><code>## 
-## Attaching package: &#39;xts&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     first, last</code></pre>
-<pre><code>## 
-## Attaching package: &#39;PerformanceAnalytics&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:graphics&#39;:
-## 
-##     legend</code></pre>
-<pre><code>## Loading required package: quantmod</code></pre>
 <pre><code>## Warning: package &#39;quantmod&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## Loading required package: TTR</code></pre>
 <pre><code>## Warning: package &#39;TTR&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
-##   method            from
-##   as.zoo.data.frame zoo</code></pre>
-<pre><code>## == Need to Learn tidyquant? ====================================================
-## Business Science offers a 1-hour course - Learning Lab #9: Performance Analysis &amp; Portfolio Optimization with tidyquant!
-## &lt;/&gt; Learn more at: https://university.business-science.io/p/learning-labs-pro &lt;/&gt;</code></pre>
 <pre><code>## Warning: package &#39;infer&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## 
-## Attaching package: &#39;infer&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:mosaic&#39;:
-## 
-##     prop_test, t_test</code></pre>
 <pre><code>## Warning: package &#39;openintro&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## Loading required package: airports</code></pre>
 <pre><code>## Warning: package &#39;airports&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## Loading required package: cherryblossom</code></pre>
 <pre><code>## Warning: package &#39;cherryblossom&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## Loading required package: usdata</code></pre>
 <pre><code>## Warning: package &#39;usdata&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## 
-## Attaching package: &#39;openintro&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     dotPlot</code></pre>
-<pre><code>## The following objects are masked from &#39;package:lattice&#39;:
-## 
-##     ethanol, lsegments</code></pre>
 <p>At the last board meeting of Omega Group Plc., the headquarters of a large multinational company, the issue was raised that women were being discriminated in the company, in the sense that the salaries were not the same for male and female executives. A quick analysis of a sample of 50 employees (of which 24 men and 26 women) revealed that the average salary for men was about 8,700 higher than for women. This seemed like a considerable difference, so it was decided that a further analysis of the company salaries was warranted.</p>
 <p>We are asked to carry out the analysis. The objective is to find out whether there is indeed a significant difference between the salaries of men and women, and whether the difference is due to discrimination or whether it is based on another, possibly valid, determining factor.</p>
 <div id="loading-the-data" class="section level2">

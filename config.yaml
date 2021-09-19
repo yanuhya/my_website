@@ -89,7 +89,7 @@ params:
         title: gapminder
         url: blogs/gapminder
       - image: pic03.jpg
-        subtitle: Lorem Etiam Nullam
+        subtitle: Analysing pay scale data by gender
         title: Omega Group Pay Discrimination
         url: blogs/payDiscrimination
       - image: pic04.jpg
