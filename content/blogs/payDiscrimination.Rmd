@@ -13,7 +13,7 @@ categories:
 - ''
 ---
 
-```{r load-libraries, echo=FALSE, message=FALSE}
+```{r load-libraries, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
 library(mosaic)
 library(ggthemes)
