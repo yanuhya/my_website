@@ -50,6 +50,11 @@ Further, I worked with meet as a product management intern on "powered networkin
 knitr::include_graphics("/img/picture1.png")
 ```
 
+```{r picture2, echo=FALSE, out.width="100%"}
+knitr::include_graphics("/img/picture2.png")
+```
+
+
 ![Digital Art](https://drive.google.com/file/d/1kZhc-_k2yWX0PNaExlmGeD-MH-rIdyYS/view?usp=sharing){width=100px}
 
 
