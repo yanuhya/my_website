@@ -46,13 +46,10 @@ Since graduation, I've been working as a software developer at Tesco ( *No, I do
 
 Further, I worked with meet as a product management intern on "powered networking". I am always up for a chat about product, tech and digital transformation of industries.
 
-```{r picture1, echo=FALSE, out.width="100%"}
-knitr::include_graphics("/img/picture1.png")
+```{r picture1, echo=FALSE, out.width="30%"}
+knitr::include_graphics(c("/img/picture1.png","/img/picture2.png", "/img/picture3.jpeg"))
 ```
 
-```{r picture2, echo=FALSE, out.width="100%"}
-knitr::include_graphics("/img/picture2.png")
-```
 
 
 ![Digital Art](https://drive.google.com/file/d/1kZhc-_k2yWX0PNaExlmGeD-MH-rIdyYS/view?usp=sharing){width=100px}
