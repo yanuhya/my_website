@@ -54,7 +54,6 @@ categories:
 <p>The <code>country_data</code> and <code>continent_data</code> will filter the country “India” and continent “Asia”.</p>
 <pre class="r"><code>country_data &lt;- gapminder %&gt;% 
             filter(country == &quot;India&quot;) # just choosing Greece, as this is where I come from
-
 continent_data &lt;- gapminder %&gt;% 
             filter(continent == &quot;Asia&quot;)</code></pre>
 <p>First, we create a plot of life expectancy over time for India. We map <code>year</code> on the x-axis, and <code>lifeExp</code> on the y-axis. We use <code>geom_point()</code> to see the actual data points and <code>geom_smooth(se = FALSE)</code> to plot the underlying trendlines.</p>
@@ -67,13 +66,11 @@ continent_data &lt;- gapminder %&gt;%
        x = &quot;YEARS&quot;,
        y = &quot;Life Expectency &quot;) 
 plot1</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/blogs/gapminder_files/figure-html/lifeExp_one_country_with_label-1.png" width="672" /></p>
 <p>Secondly, we produce a plot for all countries in Asia. We map the <code>country</code> variable to the colour aesthetic. We also map <code>country</code> to the <code>group</code> aesthetic, so all points for each country are grouped together.</p>
 <pre class="r"><code> ggplot(continent_data, aes(x = year , y =lifeExp  , colour= country, group = country))+
    geom_point() + 
    geom_smooth(se = FALSE)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/blogs/gapminder_files/figure-html/lifeExp_one_continent-1.png" width="672" /></p>
 <p>Finally, using the original <code>gapminder</code> data, we produce a life expectancy over time graph, grouped (or faceted) by continent. We will remove all legends, adding the <code>theme(legend.position="none")</code> in the end of our ggplot.</p>
 <pre class="r"><code> ggplot(data = gapminder , mapping = aes(x = year , y =  lifeExp, colour= country ))+
@@ -81,15 +78,14 @@ plot1</code></pre>
    geom_smooth(se = FALSE) +
    facet_wrap(~continent) +
    theme(legend.position=&quot;none&quot;)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/blogs/gapminder_files/figure-html/lifeExp_facet_by_continent-1.png" width="672" /></p>
 <div id="observations-for-life-expectency-since-1952" class="section level4">
 <h4>Observations for life expectency since 1952</h4>
 <blockquote>
 <p>The life expectency has been increasing linearly in most of the countires except a few countires in Africa and Asia. The constant improvement of life expectency can be attributed to access to better health care. Another factor could be the extensive research and development for prevention of diseases.
-The drop in the life expectency in Africa could be because of the outbreak of HIV-AIDs around mid 1970s. The same might be the cause of drop in a few countries in Asia.</p>
+The drop in the life expectency in Africa could be because of the outbreak of HIV-AIDs around mid 1970s. The same might be the cause of drop in a few countries in Asia.
+Let’s join a few dataframes with more data than the ‘gapminder’ package. Specifically, we will look at data on</p>
 </blockquote>
-<p>Let’s join a few dataframes with more data than the ‘gapminder’ package. Specifically, we will look at data on</p>
 <ul>
 <li>Life expectancy at birth (life_expectancy_years.csv)</li>
 <li>GDP per capita in constant 2010 US$ (<a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.KD" class="uri">https://data.worldbank.org/indicator/NY.GDP.PCAP.KD</a>)</li>
@@ -100,36 +96,15 @@ The drop in the life expectency in Africa could be because of the outbreak of HI
 </ul>
 <p>We have to use the <code>wbstats</code> package to download data from the World Bank. The relevant World Bank indicators are <code>SP.DYN.TFRT.IN</code>, <code>SE.PRM.NENR</code>, <code>NY.GDP.PCAP.KD</code>, and <code>SH.DYN.MORT</code></p>
 <pre class="r"><code># load gapminder HIV data
-hiv &lt;- read_csv(here::here(&quot;data&quot;,&quot;adults_with_hiv_percent_age_15_49.csv&quot;))</code></pre>
-<pre><code>## Rows: 154 Columns: 34</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
-## Delimiter: &quot;,&quot;
-## chr  (1): country
-## dbl (31): 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1990, 1991, ...
-## lgl  (2): 1988, 1989</code></pre>
-<pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>life_expectancy &lt;- read_csv(here::here(&quot;data&quot;,&quot;life_expectancy_years.csv&quot;))</code></pre>
-<pre><code>## Rows: 187 Columns: 302</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
-## Delimiter: &quot;,&quot;
-## chr   (1): country
-## dbl (301): 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810,...</code></pre>
-<pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code># get World bank data using wbstats
+hiv &lt;- read_csv(here::here(&quot;data&quot;,&quot;adults_with_hiv_percent_age_15_49.csv&quot;))
+life_expectancy &lt;- read_csv(here::here(&quot;data&quot;,&quot;life_expectancy_years.csv&quot;))
+# get World bank data using wbstats
 indicators &lt;- c(&quot;SP.DYN.TFRT.IN&quot;,&quot;SE.PRM.NENR&quot;, &quot;SH.DYN.MORT&quot;, &quot;NY.GDP.PCAP.KD&quot;)
-
-
-library(wbstats)</code></pre>
-<pre><code>## Warning: package &#39;wbstats&#39; was built under R version 4.1.1</code></pre>
-<pre class="r"><code>worldbank_data &lt;- wb_data(country=&quot;countries_only&quot;, #countries only- no aggregates like Latin America, Europe, etc.
+library(wbstats)
+worldbank_data &lt;- wb_data(country=&quot;countries_only&quot;, #countries only- no aggregates like Latin America, Europe, etc.
                           indicator = indicators, 
                           start_date = 1960, 
                           end_date = 2016)
-
 # get a dataframe of information regarding countries, indicators, sources, regions, indicator topics, lending types, income levels,  from the World Bank API 
 countries &lt;-  wbstats::wb_cachelist$countries</code></pre>
 <p>We have to join the 3 dataframes (life_expectancy, worldbank_data, and HIV) into one. We may need to tidy your data first and then perform <a href="http://r4ds.had.co.nz/relational-data.html">join operations</a>.</p>
@@ -662,16 +637,11 @@ countries &lt;-  wbstats::wb_cachelist$countries</code></pre>
 </table>
 <pre class="r"><code>life_expectency_long &lt;- life_expectancy %&gt;%
   pivot_longer(2:302, values_to = &quot;life_expec&quot; , names_to = &quot;year&quot;)
-
 hiv_long &lt;- hiv %&gt;%
   pivot_longer(2:34, values_to = &quot;prop_hiv&quot; , names_to = &quot;year&quot;)
-
 life_hiv &lt;- right_join(hiv_long, life_expectency_long, by = c(&quot;year&quot; = &quot;year&quot;, &quot;country&quot; = &quot;country&quot;))
-
 life_hiv$year = as.numeric(life_hiv$year)
-
 life_hiv_bank_data &lt;- left_join(life_hiv, worldbank_data, by = c(&quot;year&quot; = &quot;date&quot;, &quot;country&quot; = &quot;country&quot;))
-
 life_hiv_bank_data &lt;- life_hiv_bank_data %&gt;%
   rename(fertilityRate = SP.DYN.TFRT.IN, gdp = NY.GDP.PCAP.KD, mortalityRate = SH.DYN.MORT, primarySchoolEnrolment = SE.PRM.NENR)</code></pre>
 <p>We used a mixture of both right and left joins because so long as the dataframes are in the correct order when passed through the function, it does not matter whether you do a right or left join. We did not use an inner join as that would have resulted in data loss - the HIV dataframe only has values from the year 1979 onwards whereas the life expectancy dataframe has values from the year 1800 onwards.</p>
@@ -687,10 +657,6 @@ life_hiv_bank_data &lt;- life_hiv_bank_data %&gt;%
   ylim(30,100) +
   geom_smooth(method = &quot;lm&quot;, formula= y~x) +
   labs( title = &quot;Relationship HIV prevalence and life expectancy &quot;, y = &quot;Life Expectency&quot;, x = &quot;Proportion of HIV prevalance &quot;)</code></pre>
-<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will
-## replace the existing scale.</code></pre>
-<pre><code>## Warning: Removed 48788 rows containing non-finite values (stat_smooth).</code></pre>
-<pre><code>## Warning: Removed 48788 rows containing missing values (geom_point).</code></pre>
 <p><img src="/blogs/gapminder_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>As we can see from the above plot, as the proportion of HIV prevalence increases, the life expectancy decreases. Thus, there is a negative relationship between the two variables.</p>
 <ol style="list-style-type: decimal">
@@ -704,8 +670,6 @@ life_hiv_bank_data &lt;- life_hiv_bank_data %&gt;%
   geom_smooth(method = &quot;lm&quot;, formula= y~x) +
   facet_wrap(~region) +
   labs( title = &quot;Relationship fertility rate and GDP per capita &quot;, y = &quot;GDP per capita&quot;, x = &quot;Fertility rate &quot;)</code></pre>
-<pre><code>## Warning: Removed 44433 rows containing non-finite values (stat_smooth).</code></pre>
-<pre><code>## Warning: Removed 44433 rows containing missing values (geom_point).</code></pre>
 <p><img src="/blogs/gapminder_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>As GDP increases, the fertility rate decreases.</p>
 <ol style="list-style-type: decimal">
@@ -732,11 +696,9 @@ life_hiv_bank_data &lt;- life_hiv_bank_data %&gt;%
   pivot_wider( names_from = year, values_from = life_expec) %&gt;%
   rename(&quot;year_1800&quot; = &quot;1800&quot;, &quot;year_2021&quot;= &quot;2021&quot;) %&gt;%
   mutate(change_mortality = (year_2021 - year_1800) )</code></pre>
-<pre><code>## Adding missing grouping variables: `year`</code></pre>
 <pre class="r"><code>mortality_top5 &lt;- mortality_diff %&gt;%
   group_by(region) %&gt;%
   slice_max(order_by = change_mortality, n=5)
-
 mortality_top5</code></pre>
 <pre><code>## # A tibble: 32 x 5
 ## # Groups:   region [7]
@@ -756,7 +718,6 @@ mortality_top5</code></pre>
 <pre class="r"><code>mortality_least5 &lt;- mortality_diff %&gt;%
   group_by(region) %&gt;%
   slice_max(order_by = -change_mortality, n=5)
-
 mortality_least5</code></pre>
 <pre><code>## # A tibble: 32 x 5
 ## # Groups:   region [7]

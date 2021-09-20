@@ -40,9 +40,9 @@ monthly_average &lt;- bike %&gt;%
   filter(year&gt;=2016) %&gt;%
   group_by(year, month) %&gt;%
   summarise(monthly_average = mean(bikes_hired),
-            year = unique(year))</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;year&#39;. You can override using the `.groups` argument.</code></pre>
-<pre class="r"><code>full_monthly_averages &lt;- left_join(monthly_average, general_monthly_average, by=&quot;month&quot;)
+            year = unique(year))
+
+full_monthly_averages &lt;- left_join(monthly_average, general_monthly_average, by=&quot;month&quot;)
 
 full_monthly_averages %&gt;% 
   ggplot(aes(x=month, group=1)) +
@@ -86,7 +86,6 @@ bike_pw &lt;- bike %&gt;%
   left_join(expected_bike_pw, by=&quot;week&quot;) %&gt;% 
   mutate(excess_rentals = actual_rentals - expected_rentals,
          excess_rentals_inpct = excess_rentals/expected_rentals)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;year&#39;. You can override using the `.groups` argument.</code></pre>
 <pre class="r"><code>weekly_plot &lt;- bike_pw %&gt;% 
   ggplot(aes(x = week)) +
   geom_line(aes(y = excess_rentals_inpct), 

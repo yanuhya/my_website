@@ -20,16 +20,8 @@ categories:
 <p>We are asked to carry out the analysis. The objective is to find out whether there is indeed a significant difference between the salaries of men and women, and whether the difference is due to discrimination or whether it is based on another, possibly valid, determining factor.</p>
 <div id="loading-the-data" class="section level2">
 <h2>Loading the data</h2>
-<pre class="r"><code>omega &lt;- read_csv(here::here(&quot;data&quot;, &quot;omega.csv&quot;))</code></pre>
-<pre><code>## Rows: 50 Columns: 3</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
-## Delimiter: &quot;,&quot;
-## chr (1): gender
-## dbl (2): salary, experience</code></pre>
-<pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>glimpse(omega) # examine the data frame</code></pre>
+<pre class="r"><code>omega &lt;- read_csv(here::here(&quot;data&quot;, &quot;omega.csv&quot;))
+glimpse(omega) # examine the data frame</code></pre>
 <pre><code>## Rows: 50
 ## Columns: 3
 ## $ salary     &lt;dbl&gt; 81894.42, 69517.43, 68589.16, 74880.80, 65598.05, 76840.49,~
@@ -69,7 +61,6 @@ gender_salary &lt;- omega %&gt;%
          margin_of_error = t_critical*SE_sal,
          lower_bound_CI_sal = mean_sal - (1.96*stder_sal),
          upper_bound_CI_sal = mean_sal + (1.96*stder_sal))</code></pre>
-<pre><code>## Adding missing grouping variables: `gender`</code></pre>
 <p>From the analysis above, we can conclude that the difference between the relationships of salary and gender is at least 95% statistically significant. The confidence intervals of salaries of men and women do not overlap and there is an observed difference of about £10 000, leading us to an initial observation that there is gender discrimination happening. However, let us conduct further analysis to confirm this.</p>
 <p>We can also run a hypothesis testing, assuming as a null hypothesis that the mean difference in salaries is zero, or that, on average, men and women make the same amount of money. We tun your hypothesis testing using <code>t.test()</code> and with the simulation method from the <code>infer</code> package.</p>
 <pre class="r"><code># hypothesis testing using t.test() 
@@ -124,7 +115,6 @@ favstats (experience ~ gender, data=omega)</code></pre>
          margin_of_error = t_critical*SE_exp,
          lower_bound_CI_exp = mean_exp - (1.96*stder_exp),
          upper_bound_CI_exp = mean_exp + (1.96*stder_exp))</code></pre>
-<pre><code>## Adding missing grouping variables: `gender`</code></pre>
 <p>Based on this evidence, can we conclude that there is a significant difference between the experience of the male and female executives? Let’s perform similar analyses as in the previous section. Does our conclusion validate or endanger our conclusion about the difference in male and female salaries?</p>
 <p>From the analysis above, we can conclude that the difference between experience levels of males and females is at least 95% statistically signifcant. This endangers our initial conclusion that the difference in salaries between genders is solely due to discrimination. However, more analysis needs to be conducted before we can form a final conclusion.</p>
 </div>
@@ -139,7 +129,6 @@ favstats (experience ~ gender, data=omega)</code></pre>
   labs (
     title = &quot;Salary by Experience&quot;
   )</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/blogs/payDiscrimination_files/figure-html/salary_exp_scatter-1.png" width="672" /></p>
 <p>From the scatterplot above, we can see a clear correlation between salary and experience. This would confirm the argument that salary is related to experience, and reject the argument that salary is related to gender. At this point of the analysis, we could say that there is just insufficient information to tell whether there is any gender-based salary discrimination, as it seems to be more related to experience.</p>
 </div>
@@ -150,8 +139,6 @@ favstats (experience ~ gender, data=omega)</code></pre>
   select(gender, experience, salary) %&gt;% #order variables they will appear in ggpairs()
   ggpairs(aes(colour=gender, alpha = 0.3))+
   theme_bw()</code></pre>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="/blogs/payDiscrimination_files/figure-html/ggpairs-1.png" width="672" /></p>
 <p>This salary-experience plot, organized by gender, tells us a lot. From the bottom-left of the plot, which concern employees with minimum experience, we can infer that women actually have higher salaries than men. However, as we move towards the upper-middle part of the plot, we can see that women with 15-30 years of experience are paid less than their male peers. Additionally, employees witht the most experience in the company (30-45 years), are solely male, and thus there is no way to tell whether there is any gender-based salary discrimination going on. However, it may be possible that for these senior roles, only males have been considered, as there is no woman with this much experience in this company. This would introduce another gender-based discrimination into the mix.</p>
 </div>

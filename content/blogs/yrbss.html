@@ -274,8 +274,6 @@ glimpse(yrbss)</code></pre>
 <pre class="r"><code>ggplot(yrbss, aes(y=weight, x= physically_active_7d)) + 
   geom_point() + 
   geom_smooth(color=&quot;red&quot;, method=&quot;lm&quot;, formula = y~x)</code></pre>
-<pre><code>## Warning: Removed 1219 rows containing non-finite values (stat_smooth).</code></pre>
-<pre><code>## Warning: Removed 1219 rows containing missing values (geom_point).</code></pre>
 <p><img src="/blogs/yrbss_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code>yrbss %&gt;%
   select(weight, physically_active_7d) %&gt;%
@@ -317,12 +315,9 @@ boot_active &lt;- yrbss  %&gt;%
   generate(reps = 1000, type = &quot;bootstrap&quot;) %&gt;%
   
   # Find the median of each sample
-  calculate(stat = &quot;prop&quot;)</code></pre>
-<pre><code>## Warning: Removed 273 rows containing missing values.</code></pre>
-<pre><code>## Warning: You have given `type = &quot;bootstrap&quot;`, but `type` is expected to be
-## `&quot;draw&quot;`. This workflow is untested and the results may not mean what you think
-## they mean.</code></pre>
-<pre class="r"><code>percentile_ci &lt;- boot_active %&gt;% 
+  calculate(stat = &quot;prop&quot;)
+
+percentile_ci &lt;- boot_active %&gt;% 
   get_confidence_interval(level = 0.95, type = &quot;percentile&quot;)
 percentile_ci</code></pre>
 <pre><code>## # A tibble: 1 x 2
@@ -392,7 +387,6 @@ confidence_interval_active &lt;- yrbss %&gt;%
 <pre class="r"><code>obs_diff &lt;- yrbss %&gt;%
   specify(weight ~ physical_3plus) %&gt;%
   calculate(stat = &quot;diff in means&quot;, order = c(&quot;yes&quot;, &quot;no&quot;))</code></pre>
-<pre><code>## Warning: Removed 1219 rows containing missing values.</code></pre>
 <p>Notice how we can use the functions specify and calculate again like we did for calculating confidence intervals. Here, though, the statistic we are searching for is the difference in means, with the order being yes - no != 0.</p>
 <p>After we have initialized the test, we simulate the test on the null distribution, which we will save as null.</p>
 <pre class="r"><code>null_dist &lt;- yrbss %&gt;%
@@ -407,25 +401,19 @@ confidence_interval_active &lt;- yrbss %&gt;%
   
   # calculate statistic of difference, namely &quot;diff in means&quot;
   calculate(stat = &quot;diff in means&quot;, order = c(&quot;yes&quot;, &quot;no&quot;))</code></pre>
-<pre><code>## Warning: Removed 1219 rows containing missing values.</code></pre>
 <p>Here, <code>hypothesize</code> is used to set the null hypothesis as a test for independence, i.e., that there is no difference between the two population means. In one sample cases, the null argument can be set to <em>point</em> to test a hypothesis relative to a point estimate.</p>
 <p>Also, we note that the <code>type</code> argument within generate is set to permute, which is the argument when generating a null distribution for a hypothesis test.</p>
 <p>We can visualize this null distribution with the following code:</p>
 <pre class="r"><code>ggplot(data = null_dist, aes(x = stat)) +
   geom_histogram()</code></pre>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="/blogs/yrbss_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Now that the test is initialized and the null distribution formed, we can visualise to see how many of these null permutations have a difference of at least <code>obs_stat</code> of 1.77?</p>
 <p>We can also calculate the p-value for your hypothesis test using the function <code>infer::get_p_value()</code>.</p>
 <pre class="r"><code>null_dist %&gt;% visualize() +
   shade_p_value(obs_stat = obs_diff, direction = &quot;two-sided&quot;)</code></pre>
-<pre><code>## Warning: F usually corresponds to right-tailed tests. Proceed with caution.</code></pre>
 <p><img src="/blogs/yrbss_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <pre class="r"><code>null_dist %&gt;%
   get_p_value(obs_stat = obs_diff, direction = &quot;two_sided&quot;)</code></pre>
-<pre><code>## Warning: Please be cautious in reporting a p-value of 0. This result is an
-## approximation based on the number of `reps` chosen in the `generate()` step. See
-## `?get_p_value()` for more information.</code></pre>
 <pre><code>## # A tibble: 1 x 1
 ##   p_value
 ##     &lt;dbl&gt;

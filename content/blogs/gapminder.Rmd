@@ -1,15 +1,26 @@
 ---
+title: "Gapminder"
+date: '2017-10-31T22:26:13-05:00'
+description: Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna
+  sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa
+  sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem
+  consequat tincidunt. Vivamus et sagittis tempus.
+draft: no
+image: pic08.png
+keywords: ''
+slug: gapminder
 categories:
-- ""
-- ""
-date: "2017-10-31T22:26:09-05:00"
-description: Lorem Etiam Nullam
-draft: false
-image: pic09.jpg
-keywords: ""
-slug: cdc
-title: CDC COVID Analysis
+- ''
+- ''
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  tidy = TRUE,
+  size = "small"
+)
+```
 
 ```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
 library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
@@ -20,112 +31,203 @@ library(dplyr)
 library(skimr)
 ```
 
-The [CDC Covid-19 Case Surveillance Data](https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data/vbim-akqf) is a case surveillance public use dataset with 12 elements for all COVID-19 cases shared with CDC and includes demographics, any exposure history, disease severity indicators and outcomes, presence of any underlying medical conditions and risk behaviors. 
+`gapminder` dataset has data on life expectancy, population, and GDP per capita for 142 countries from 1952 to 2007. To get a glimpse of the dataframe, namely to see the variable names, variable types, etc., we use the `glimpse` function. We can also have a look at the first 20 rows of data.
 
+```{r}
+glimpse(gapminder)
+head(gapminder, 20) # look at the first 20 rows of the dataframe
+```
 
-```{r covid_data, echo=FALSE, out.width="100%"}
-knitr::include_graphics(here::here("images", "cdc_data.png"), error = FALSE)
+The `country_data` and `continent_data` will filter the country "India" and continent "Asia".
+
+```{r}
+country_data <- gapminder %>% 
+            filter(country == "India") # just choosing Greece, as this is where I come from
+continent_data <- gapminder %>% 
+            filter(continent == "Asia")
+```
+
+First, we create a plot of life expectancy over time for India. We map `year` on the x-axis, and `lifeExp` on the y-axis. We use `geom_point()` to see the actual data points and `geom_smooth(se = FALSE)` to plot the underlying trendlines. 
+
+```{r plot1, lifeExp_one_country}
+ plot1 <- ggplot(data = country_data , mapping = aes(x = year, y = lifeExp))+
+   geom_point() +
+   geom_smooth(se = FALSE)
+```
+
+Next we need to add a title to the same plot using the `labs()` function to add an informative title to the plot.
+
+```{r, lifeExp_one_country_with_label}
+ plot1<- plot1 +
+    labs(title = "Life Expectency of India over time ",
+       x = "YEARS",
+       y = "Life Expectency ") 
+plot1
+```
+
+Secondly, we produce a plot for all countries in Asia. We map the `country` variable to the colour aesthetic. We also map `country` to the `group` aesthetic, so all points for each country are grouped together.
+
+```{r lifeExp_one_continent}
+ ggplot(continent_data, aes(x = year , y =lifeExp  , colour= country, group = country))+
+   geom_point() + 
+   geom_smooth(se = FALSE)
+```
+
+Finally, using the original `gapminder` data, we produce a life expectancy over time graph, grouped (or faceted) by continent. We will remove all legends, adding the `theme(legend.position="none")` in the end of our ggplot.
+
+```{r lifeExp_facet_by_continent}
+ ggplot(data = gapminder , mapping = aes(x = year , y =  lifeExp, colour= country ))+
+   geom_point() + 
+   geom_smooth(se = FALSE) +
+   facet_wrap(~continent) +
+   theme(legend.position="none")
+```
+
+#### Observations for life expectency since 1952
+>  The life expectency has been increasing linearly in most of the countires except a few countires in Africa and Asia. The constant improvement of life expectency can be attributed to access to better health care. Another factor could be the  extensive research and development for prevention of diseases. 
+> The drop in the life expectency in Africa could be because of the outbreak of HIV-AIDs around mid 1970s. The same might be the cause of drop in a few countries in Asia. 
+Let's join a few dataframes with more data than the 'gapminder' package. Specifically, we will look at data on 
+
+- Life expectancy at birth (life_expectancy_years.csv)
+- GDP per capita in constant 2010 US$ (https://data.worldbank.org/indicator/NY.GDP.PCAP.KD)
+- Female fertility: The number of babies per woman (https://data.worldbank.org/indicator/SP.DYN.TFRT.IN)
+- Primary school enrollment as % of children attending primary school (https://data.worldbank.org/indicator/SE.PRM.NENR)
+- Mortality rate, for under 5, per 1000 live births (https://data.worldbank.org/indicator/SH.DYN.MORT)
+- HIV prevalence (adults_with_hiv_percent_age_15_49.csv): The estimated number of people living with HIV per 100 population of age group 15-49.
+
+We have to use the `wbstats` package to download data from the World Bank. The relevant World Bank indicators are `SP.DYN.TFRT.IN`, `SE.PRM.NENR`, `NY.GDP.PCAP.KD`, and `SH.DYN.MORT`
+
+```{r, get_data, cache=TRUE}
+# load gapminder HIV data
+hiv <- read_csv(here::here("data","adults_with_hiv_percent_age_15_49.csv"))
+life_expectancy <- read_csv(here::here("data","life_expectancy_years.csv"))
+# get World bank data using wbstats
+indicators <- c("SP.DYN.TFRT.IN","SE.PRM.NENR", "SH.DYN.MORT", "NY.GDP.PCAP.KD")
+library(wbstats)
+worldbank_data <- wb_data(country="countries_only", #countries only- no aggregates like Latin America, Europe, etc.
+                          indicator = indicators, 
+                          start_date = 1960, 
+                          end_date = 2016)
+# get a dataframe of information regarding countries, indicators, sources, regions, indicator topics, lending types, income levels,  from the World Bank API 
+countries <-  wbstats::wb_cachelist$countries
+```
+
+We have to join the 3 dataframes (life_expectancy, worldbank_data, and HIV) into one. We may need to tidy your data first and then perform [join operations](http://r4ds.had.co.nz/relational-data.html). 
+
+1. What is the relationship between HIV prevalence and life expectancy? We generate a scatterplot with a smoothing line to report our results. 
+
+```{r}
+skim(hiv)
+```
+
+```{r}
+life_expectency_long <- life_expectancy %>%
+  pivot_longer(2:302, values_to = "life_expec" , names_to = "year")
+hiv_long <- hiv %>%
+  pivot_longer(2:34, values_to = "prop_hiv" , names_to = "year")
+life_hiv <- right_join(hiv_long, life_expectency_long, by = c("year" = "year", "country" = "country"))
+life_hiv$year = as.numeric(life_hiv$year)
+life_hiv_bank_data <- left_join(life_hiv, worldbank_data, by = c("year" = "date", "country" = "country"))
+life_hiv_bank_data <- life_hiv_bank_data %>%
+  rename(fertilityRate = SP.DYN.TFRT.IN, gdp = NY.GDP.PCAP.KD, mortalityRate = SH.DYN.MORT, primarySchoolEnrolment = SE.PRM.NENR)
+```
+
+We used a mixture of both right and left joins because so long as the dataframes are in the correct order when passed through the function, it does not matter whether you do a right or left join. We did not use an inner join as that would have resulted in data loss - the HIV dataframe only has values from the year 1979 onwards whereas the life expectancy dataframe has values from the year 1800 onwards.
+
+```{r}
+life_hiv_bank_data_region <- right_join( life_hiv_bank_data ,countries, by = c( "country" = "country")) %>%
+  select(year, country, region,fertilityRate, gdp, mortalityRate, primarySchoolEnrolment, prop_hiv,life_expec )
 ```
 
 
+1. What is the relationship between HIV prevalence and life expectancy? We generate a scatterplot with a smoothing line to report your results. You may find faceting useful
 ```{r}
-cdc_db <- DBI::dbConnect(
-  drv = RSQLite::SQLite(),
-  dbname = "cdc_data.db"
-)
-
-# browse the tables in the database using DBI::dbListTables()
-DBI::dbListTables(cdc_db)
-
-# We can easily set these tables up as database objects using dplyr
-cdc_data <- dplyr::tbl(cdc_db, "cdc")
-
-cdc_data
+ggplot(life_hiv_bank_data_region, aes(x=prop_hiv, y=life_expec )) +
+  geom_point() +
+  scale_y_log10() +
+  scale_x_log10() +
+  ylim(30,100) +
+  geom_smooth(method = "lm", formula= y~x) +
+  labs( title = "Relationship HIV prevalence and life expectancy ", y = "Life Expectency", x = "Proportion of HIV prevalance ")
 ```
 
+As we can see from the above plot, as the proportion of HIV prevalence increases, the life expectancy decreases. Thus, there is a negative relationship between the two variables.
 
-
-There are well over 28 million entries of individual, and we will work with SQLlite database, rather than a CSV file. The two graphs that show death % rate:
-
-
-1. by age group, sex, and whether the patient had co-morbidities or not
-
+1. What is the relationship between fertility rate and GDP per capita? We generate a scatterplot with a smoothing line to report our results. 
 
 ```{r}
-query1 <-   cdc_data %>% 
-  select(sex, age_group, medcond_yn, death_yn ) %>%
-  group_by(sex, age_group, medcond_yn, death_yn) %>%
-  summarize(count = n())
-  
+ggplot(life_hiv_bank_data_region, aes(x=fertilityRate , y=gdp )) +
+  geom_point() +
+  scale_y_log10() +
+  scale_x_log10() +
+#  ylim(30,100) +
+  geom_smooth(method = "lm", formula= y~x) +
+  facet_wrap(~region) +
+  labs( title = "Relationship fertility rate and GDP per capita ", y = "GDP per capita", x = "Fertility rate ")
+```
 
-query1_tibble <- query1 %>% 
-  collect()
+As GDP increases, the fertility rate decreases. 
+
+1. Which regions have the most observations with missing HIV data? We generate a bar chart (`geom_col()`), in descending order.
+
+```{r}
+NA_count <- life_hiv_bank_data_region %>%
+  group_by(region) %>%
+  filter(is.na(prop_hiv)) %>%
+  summarise(countNA = n())
 ```
 
 ```{r}
-query1_tibble1 <- query1_tibble %>%
+ggplot(NA_count,aes( y = fct_reorder(region, countNA), x = countNA)) +
+  geom_col()
+```
+
+Sub-Saharan Africa and Europe & Central Asia have the most missing observations for HIV data.
+
+
+1. How has mortality rate for under 5 changed by region? In each region, we find the top 5 countries that have seen the greatest improvement, as well as those 5 countries where mortality rates have had the least improvement or even deterioration.
+
+```{r warning=FALSE}
+mortality_diff <- life_hiv_bank_data_region %>%
+  filter(year == 1800 | year == 2021 ) %>%
+  group_by(year) %>%
+  mutate( region = region, 
+          country = country, 
+          life_expec = life_expec) %>%
+  select(region, country, life_expec) %>%
+  pivot_wider( names_from = year, values_from = life_expec) %>%
+  rename("year_1800" = "1800", "year_2021"= "2021") %>%
+  mutate(change_mortality = (year_2021 - year_1800) )
+```
+
+```{r warning=FALSE}
+mortality_top5 <- mortality_diff %>%
+  group_by(region) %>%
+  slice_max(order_by = change_mortality, n=5)
+mortality_top5
+mortality_least5 <- mortality_diff %>%
+  group_by(region) %>%
+  slice_max(order_by = -change_mortality, n=5)
+mortality_least5
+```
+
+We can see that each region has seen various changes in mortality rate over the years.
+
+1. Is there a relationship between primary school enrollment and fertility rate?
+
+```{r warning=FALSE}
+ggplot(life_hiv_bank_data_region, aes(x=primarySchoolEnrolment, y=fertilityRate)) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10() + 
+  geom_smooth(method = "lm", formula = y~x)
+```
+
+```{r warning=FALSE}
+ life_hiv_bank_data_region %>%
+  select(fertilityRate, primarySchoolEnrolment) %>%
   na.omit() %>%
-  filter(death_yn == "Yes" | death_yn == "No") %>%
-  filter(sex == "Female" | sex == "Male" ) %>%
-  filter(medcond_yn == "Yes" | medcond_yn == "No") %>%
-  filter(age_group != "Missing") %>%
-  pivot_wider(names_from = death_yn, values_from = count) %>%
-  mutate(death_perc = round((Yes/ (Yes + No)) * 100, 1 )) 
-  
+  cor()
 ```
 
-```{r}
-query1_tibble1$medcond_yn[query1_tibble1$medcond_yn == "Yes"] = "With co-morbidity"
-query1_tibble1$medcond_yn[query1_tibble1$medcond_yn == "No"] = "Without co-morbidity"
-```
-
-
-```{r}
-options(repr.plot.width = 10, repr.plot.height =200 )
-ggplot(query1_tibble1, aes(y= age_group, x= death_perc, scales= "free")) +
-  geom_col(width = 0.8, fill = "violet") + 
-  geom_text(aes(label = death_perc) ,  size = 3,  vjust = 0.5, hjust = -0.2) +
-   scale_y_discrete(guide = guide_axis(check.overlap = TRUE)) +
-  facet_wrap(~ sex + medcond_yn) +
-  NULL
-```
-
-
-1. by age group, sex, and whether the patient was admited to Intensive Care Unit (ICU) or not.
-```{r}
-query2 <-   cdc_data %>% 
-  select(sex, age_group, icu_yn, death_yn ) %>%
-  group_by(sex, age_group, icu_yn , death_yn) %>%
-  summarize(count = n())
-  
-
-query2_tibble <- query2 %>% 
-  collect()
-```
-
-```{r}
-query2_tibble1 <- query2_tibble %>%
-  na.omit() %>%
-  filter(death_yn == "Yes" | death_yn == "No") %>%
-  filter(sex == "Female" | sex == "Male" ) %>%
-  filter(icu_yn == "Yes" | icu_yn == "No") %>%
-  filter(age_group != "Missing") %>%
-  pivot_wider(names_from = death_yn, values_from = count) %>%
-  mutate(death_perc = round((Yes/ (Yes + No)) * 100 , 1)) 
-  
-```
-
-```{r}
-query2_tibble1$icu_yn[query2_tibble1$icu_yn == "Yes"] = "ICU Admission"
-query2_tibble1$icu_yn[query2_tibble1$icu_yn == "No"] = "No ICU Admission"
-```
-
-
-```{r}
-options(repr.plot.width = 10, repr.plot.height =200 )
-ggplot(query2_tibble1, aes(y= age_group, x= death_perc, scales= "free")) +
-  geom_col(width = 0.8, fill = "orange") + 
-  scale_y_discrete(guide = guide_axis(check.overlap = TRUE)) +
-  geom_text(aes(label = death_perc) ,size = 3,  vjust = 0.5 , hjust = -0.2) +
-  facet_wrap(~ sex + icu_yn)
-```
+As we can see from the scatter plot, there is a strong negative relationship between primary school enrollment and fertility rate. We can see that as primary school enrollment increases, the fertility rate decreases. This is further supported by the correlation between the two variables. The correlation in question is -0.727 which is quite significant negative correlation.

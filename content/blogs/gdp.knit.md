@@ -10,47 +10,27 @@ slug: gdp
 title: GDP
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-  message = FALSE,
-  warning = FALSE,
-  tidy = TRUE,
-  size = "small"
-)
-```
 
-```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
-library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
-library(mosaic)
-library(ggthemes)
-library(GGally)
-library(readxl)
-library(here)
-library(skimr)
-library(janitor)
-library(broom)
-library(tidyquant)
-library(infer)
-library(openintro)
-```
+
+
 
 At the risk of oversimplifying things, the main components of gross domestic product, GDP are personal consumption (C), business investment (I), government spending (G) and net exports (exports - imports). Read more about GDP and the different approaches in calculating at the [Wikipedia GDP page](https://en.wikipedia.org/wiki/Gross_domestic_product).
 
 The GDP data we will look at is from the [United Nations' National Accounts Main Aggregates Database](https://unstats.un.org/unsd/snaama/Downloads), which contains estimates of total GDP and its components for all countries from 1970 to today. We will look at how GDP and its components have changed over time, and compare different countries and how much each component contributes to that country's GDP. 
 
 
-```{r read_GDP_data}
 
+```r
 UN_GDP_data  <-  read_excel(here::here("data", "Download-GDPconstant-USD-countries.xls"), # Excel filename
                 sheet="Download-GDPconstant-USD-countr", # Sheet name
                 skip=2) # Number of rows to skip
-
 ```
 
  The first thing we do is to tidy the data, as it is in wide format and we must make it into long, tidy format. All figures are expressed in billions (divide values by `1e9`, or $10^9$), and we rename the indicators into something shorter.
 
 
-```{r reshape_GDP_data}
+
+```r
 tidy_GDP_data<-UN_GDP_data %>% 
   pivot_longer(cols=c(4:51),names_to="year",values_to="figure") %>% 
   mutate(figure=figure/1e9) 
@@ -68,7 +48,8 @@ tidy_GDP_data<-tidy_GDP_data %>%
 country_list <- c("United States","India", "Germany")
 ```
 
-```{r}
+
+```r
 three_country<-tidy_GDP_data %>% filter(country %in% country_list)%>% 
   filter(Indicator_Name %in% c("Gross capital formation", "Exports","Household expeniture","Imports","Government expenditure")) 
   
@@ -85,12 +66,15 @@ ggplot(three_country,aes(x=year,y=figure,color=Indicator_Name))+
        y="Billion US$")
 ```
 
+<img src="gdp_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+
 
 We recall that GDP is the sum of Household Expenditure (Consumption *C*), Gross Capital Formation (business investment *I*), Government Expenditure (G) and Net Exports (exports - imports). Even though there is an indicator `Gross Domestic Product (GDP)` in your dataframe, we calculate it given its components discussed above.
 
 > What is the % difference between what we calculated as GDP and the GDP figure included in the dataframe?
 
-```{r}
+
+```r
 export<-three_country %>% 
   filter(Indicator_Name=="Exports")
 
@@ -135,8 +119,8 @@ gdp_compared<-left_join(GDP,GDP_given,by=c("country","year")) %>%
 
 
 
-```{r}
 
+```r
 gdp_proportion<-gdp_compared %>% 
   mutate(goverment_prop=government/gdp*100,
          net_export_prop=net_export/gdp*100,
@@ -156,6 +140,8 @@ ggplot(gdp_proportion,aes(x=year,y=proportion,color=GDP_component))+
   scale_x_discrete(breaks=c(1970,1980,1990,2000,2010))+ 
   labs(title="GDP and its breakdown at constant 2010 prices in US Dollars", x="",y="proportion")
 ```
+
+<img src="gdp_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 
 

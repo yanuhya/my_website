@@ -10,6 +10,15 @@ slug: yrbss
 title: YRBSS
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  tidy = TRUE,
+  size = "small"
+)
+```
+
 ```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
 library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
 library(mosaic)
