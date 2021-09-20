@@ -48,10 +48,12 @@ Further, I worked with meet as a product management intern on "powered networkin
 
 ### Hobbies and interests
 In my leisure time:
+
 * I love binge watching tv shows
 * Playing games of snooker
 * Doodling
 * I love creating digital art. Here are few of my digital art creations: 
+
 ```{r picture1, echo=FALSE, out.width="30%"}
 knitr::include_graphics(c("/img/picture1.png", "/img/picture3.png", "/img/picture2.png"))
 ```
